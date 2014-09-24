@@ -11,7 +11,7 @@ class CreatePostsTable extends Migration {
 	 */
 	public function up()
 	{
-    	Schema::create('fbf_blog_posts', function($table)
+    	Schema::create('mandofever78_blog_posts', function($table)
         {
             $table->increments('id');
             $table->string('title');
@@ -42,7 +42,7 @@ class CreatePostsTable extends Migration {
 	 */
 	public function down()
 	{
-        Schema::drop('fbf_blog_posts');
+        Schema::drop('mandofever78_blog_posts');
 	}
 
 }

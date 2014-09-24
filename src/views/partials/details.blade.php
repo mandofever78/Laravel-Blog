@@ -1,7 +1,7 @@
 <div class="item{{ $post->is_sticky ? ' item__sticky' : '' }}">
 
 	<p class="item--all-link">
-		<a href="{{ action('Fbf\LaravelBlog\PostsController@index') }}">
+		<a href="{{ action('Mandofever78\LaravelBlog\PostsController@index') }}">
 			{{ trans('laravel-blog::messages.details.all_link_text') }}
 		</a>
 	</p>

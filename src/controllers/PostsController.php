@@ -1,14 +1,14 @@
-<?php namespace Fbf\LaravelBlog;
+<?php namespace Mandofever78\LaravelBlog;
 
 class PostsController extends \BaseController {
 
 	/**
-	 * @var \Fbf\LaravelBlog\Post
+	 * @var \Mandofever78\LaravelBlog\Post
 	 */
 	protected $post;
 
 	/**
-	 * @param \Fbf\LaravelBlog\Post $post
+	 * @param \Mandofever78\LaravelBlog\Post $post
 	 */
 	public function __construct(Post $post)
 	{
@@ -129,7 +129,7 @@ class PostsController extends \BaseController {
 			$feed->item(array(
 				'title' => $post->title,
 				'description' => $post->summary,
-				'link' => \URL::action('Fbf\LaravelBlog\PostsController@view', array('slug' => $post->slug)),
+				'link' => \URL::action('Mandofever78\LaravelBlog\PostsController@view', array('slug' => $post->slug)),
 			));
 		}
 		return \Response::make($feed, 200, array('Content-Type', 'application/rss+xml'));

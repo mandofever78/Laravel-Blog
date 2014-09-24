@@ -23,7 +23,7 @@ return array(
 		 * relationship). You can change this to a view in your app, and inside your own view you can @include the
 		 * various partials in the package if you want to, or you can use this one provided, provided you have a blade
 		 * layout called `master`, or you can leave this setting as it is, but create a new view file inside you own app
-		 * at `app/views/packages/fbf/laravel-blog/posts/index.blade.php`.
+		 * at `app/views/packages/mandofever78/laravel-blog/posts/index.blade.php`.
 		 *
 		 * @type string
 		 */
@@ -54,7 +54,7 @@ return array(
 		 * The view to use for the blog post detail page. You can change this to a view in your app, and inside your own
 		 * view you can @include the various partials in the package if you want to, or you can use this one provided,
 		 * provided you have a blade layout called `master`, or you can leave this setting as it is, but create a new
-		 * view file inside you own app at `app/views/packages/fbf/laravel-blog/posts/view.blade.php`.
+		 * view file inside you own app at `app/views/packages/mandofever78/laravel-blog/posts/view.blade.php`.
 		 */
 		'view' => 'laravel-blog::posts.view',
 
@@ -74,7 +74,7 @@ return array(
 
 		/**
 		 * Determines whether to show the share partial on the post view page. Note, if you want to change the share
-		 * partial, just override it by creating a new file at `app/views/packages/fbf/laravel-blog/partials/share.blade.php`
+		 * partial, just override it by creating a new file at `app/views/packages/mandofever78/laravel-blog/partials/share.blade.php`
 		 *
 		 * @type bool
 		 */

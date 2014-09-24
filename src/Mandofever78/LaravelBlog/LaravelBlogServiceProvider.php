@@ -1,4 +1,4 @@
-<?php namespace Fbf\LaravelBlog;
+<?php namespace Mandofever78\LaravelBlog;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -18,7 +18,7 @@ class LaravelBlogServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		$this->package('fbf/laravel-blog');
+		$this->package('mandofever78/laravel-blog');
 
 		if (\Config::get('laravel-blog::routes.use_package_routes', true))
 		{
@@ -32,7 +32,7 @@ class LaravelBlogServiceProvider extends ServiceProvider {
 		$this->app->booting(function()
 		{
 			$loader = \Illuminate\Foundation\AliasLoader::getInstance();
-			$loader->alias('Fbf\LaravelBlog\Rss', 'Thujohn\Rss\RssFacade');
+			$loader->alias('Mandofever78\LaravelBlog\Rss', 'Thujohn\Rss\RssFacade');
 			$loader->alias('Sluggable', 'Cviebrock\EloquentSluggable\Facades\Sluggable');
 		});
 

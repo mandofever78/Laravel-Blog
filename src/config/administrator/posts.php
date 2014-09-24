@@ -21,7 +21,7 @@ return array(
 	 *
 	 * @type string
 	 */
-	'model' => 'Fbf\LaravelBlog\Post',
+	'model' => 'Mandofever78\LaravelBlog\Post',
 
 	/**
 	 * The columns array
@@ -37,7 +37,7 @@ return array(
 		),
 		'status' => array(
 			'title' => 'Status',
-			'select' => "CASE (:table).status WHEN '".Fbf\LaravelBlog\Post::APPROVED."' THEN 'Approved' WHEN '".Fbf\LaravelBlog\Post::DRAFT."' THEN 'Draft' END",
+			'select' => "CASE (:table).status WHEN '".Mandofever78\LaravelBlog\Post::APPROVED."' THEN 'Approved' WHEN '".Mandofever78\LaravelBlog\Post::DRAFT."' THEN 'Draft' END",
 		),
 		'updated_at' => array(
 			'title' => 'Last Updated'
@@ -143,8 +143,8 @@ return array(
 			'type' => 'enum',
 			'title' => 'Status',
 			'options' => array(
-				Fbf\LaravelBlog\Post::DRAFT => 'Draft',
-				Fbf\LaravelBlog\Post::APPROVED => 'Approved',
+				Mandofever78\LaravelBlog\Post::DRAFT => 'Draft',
+				Mandofever78\LaravelBlog\Post::APPROVED => 'Approved',
 			),
 		),
 		'created_at' => array(
@@ -184,8 +184,8 @@ return array(
 			'type' => 'enum',
 			'title' => 'Status',
 			'options' => array(
-				Fbf\LaravelBlog\Post::DRAFT => 'Draft',
-				Fbf\LaravelBlog\Post::APPROVED => 'Approved',
+				Mandofever78\LaravelBlog\Post::DRAFT => 'Draft',
+				Mandofever78\LaravelBlog\Post::APPROVED => 'Approved',
 			),
 		),
 	),
@@ -207,7 +207,7 @@ return array(
 		'main_image' => 'max:255',
 		'main_image_alt' => 'max:255',
 		'you_tube_video_id' => 'max:255',
-		'status' => 'required|in:'.Fbf\LaravelBlog\Post::DRAFT.','.Fbf\LaravelBlog\Post::APPROVED,
+		'status' => 'required|in:'.Mandofever78\LaravelBlog\Post::DRAFT.','.Mandofever78\LaravelBlog\Post::APPROVED,
 		'published_date' => 'required|date_format:"Y-m-d H:i:s"|date',
 	),
 

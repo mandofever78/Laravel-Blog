@@ -1,4 +1,4 @@
-<?php namespace Fbf\LaravelBlog;
+<?php namespace Mandofever78\LaravelBlog;
 
 class PostTableFakeSeeder extends \Seeder {
 
@@ -25,7 +25,7 @@ class PostTableFakeSeeder extends \Seeder {
 		$replace = \Config::get('laravel-blog::seed.replace');
 		if ($replace)
 		{
-			\DB::table('fbf_blog_posts')->delete();
+			\DB::table('mandofever78_blog_posts')->delete();
 		}
 	}
 

@@ -1,4 +1,4 @@
-<?php namespace Fbf\LaravelBlog;
+<?php namespace Mandofever78\LaravelBlog;
 
 use Illuminate\Database\Eloquent\SoftDeletingTrait;
 
@@ -17,7 +17,7 @@ class Post extends \Eloquent {
 	 * Name of the table to use for this model
 	 * @var string
 	 */
-	protected $table = 'fbf_blog_posts';
+	protected $table = 'mandofever78_blog_posts';
 
 	/**
 	 * The prefix string for config options.
@@ -309,7 +309,7 @@ class Post extends \Eloquent {
 	 */
 	public function getUrl()
 	{
-		return \URL::action('Fbf\LaravelBlog\PostsController@view', array('slug' => $this->slug));
+		return \URL::action('Mandofever78\LaravelBlog\PostsController@view', array('slug' => $this->slug));
 	}
 
 	/**

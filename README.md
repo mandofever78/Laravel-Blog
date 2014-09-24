@@ -20,7 +20,7 @@ A Laravel 4 package to add a simple blog to a site
 
 Add the following to you composer.json file (Recommend swapping "dev-master" for the latest release)
 
-    "fbf/laravel-blog": "dev-master"
+    "mandofever78/laravel-blog": "dev-master"
 
 Run
 
@@ -28,15 +28,15 @@ Run
 
 Add the following to app/config/app.php
 
-    'Fbf\LaravelBlog\LaravelBlogServiceProvider'
+    'Mandofever78\LaravelBlog\LaravelBlogServiceProvider'
 
 Run the package migration
 
-    php artisan migrate --package=fbf/laravel-blog
+    php artisan migrate --package=mandofever78/laravel-blog
 
 Publish the config
 
-    php artisan config:publish fbf/laravel-blog
+    php artisan config:publish mandofever78/laravel-blog
 
 Optionally tweak the settings in the many config files for your app
 
@@ -44,15 +44,15 @@ Optionally copy the administrator config file (`src/config/administrator/posts.p
 
 Create the relevant image upload directories that you specify in your config, e.g.
 
-    public/uploads/packages/fbf/laravel-blog/main_image/original
-    public/uploads/packages/fbf/laravel-blog/main_image/thumbnail
-    public/uploads/packages/fbf/laravel-blog/main_image/resized
+    public/uploads/packages/mandofever78/laravel-blog/main_image/original
+    public/uploads/packages/mandofever78/laravel-blog/main_image/thumbnail
+    public/uploads/packages/mandofever78/laravel-blog/main_image/resized
 
 ## Faker seed
 
 The package comes with a seed that can populate the table with a whole bunch of sample posts. There are some configuration options for the seed in the config file. To run it:
 
-    php artisan db:seed --class="Fbf\LaravelBlog\PostTableFakeSeeder"
+    php artisan db:seed --class="Mandofever78\LaravelBlog\PostTableFakeSeeder"
 
 ## Configuration
 
@@ -95,8 +95,8 @@ The package's views are actually really simple, and most of the presentation is 
  you can also still make use of the partials provided, if you want to.
 
 To override any view in your own app, just create the following directories and copy the file from the package into it, then hack away
-* `app/views/packages/fbf/laravel-blog/posts`
-* `app/views/packages/fbf/laravel-blog/partials`
+* `app/views/packages/mandofever78/laravel-blog/posts`
+* `app/views/packages/mandofever78/laravel-blog/partials`
 
 ## Extending the package
 
@@ -110,12 +110,12 @@ This can be done for the purposes of say, relating the Post model to a Category 
 
 To override the `Post` model in the package, create a model in you app/models directory that extends the package model.
 
-Finally, update the IoC Container to inject an instance of your model into the `Fbf\LaravelBlog\PostsController`,
+Finally, update the IoC Container to inject an instance of your model into the `Mandofever78\LaravelBlog\PostsController`,
 instead of the package's model, e.g. in `app/start/global.php`
 
 ```php
-App::bind('Fbf\LaravelBlog\PostsController', function() {
-    return new Fbf\LaravelBlog\PostsController(new Post);
+App::bind('Mandofever78\LaravelBlog\PostsController', function() {
+    return new Mandofever78\LaravelBlog\PostsController(new Post);
 });
 ```
 
@@ -124,12 +124,12 @@ add the relationship method that you want, to another existing model in your app
 `Post::indexByRelationship()` method.
 
 In addition, you'll need to create a link between the Post model and the related model. Depending on whether you are going for
-a `belongsTo` relationship or a `belongsToMany` relationship, this will either involve adding a field to the `fbf_posts`
-table, e.g. `category_id` or creating a many-to-many join table between the `fbf_posts` table and the related model's
+a `belongsTo` relationship or a `belongsToMany` relationship, this will either involve adding a field to the `mandofever78_posts`
+table, e.g. `category_id` or creating a many-to-many join table between the `mandofever78_posts` table and the related model's
 table, e.g. `post_tag`. So create a migration for this and run it.
 
 If you are using FrozenNode's Administrator package, update the `app/config/administrator/posts.php` config file to use
-your new model e.g. `Post` instead of `Fbf\LaravelBlog\Post`, and add the field to the `edit_fields` section to allow
+your new model e.g. `Post` instead of `Mandofever78\LaravelBlog\Post`, and add the field to the `edit_fields` section to allow
 you to attach the Post to the related model.
 
 Finally you need to enable the filter by relationship route. In the package's routes config file in `src/config/routes.php`
@@ -141,7 +141,7 @@ change the `'relationship_uri_prefix'` value to be `'tagged'`.
 
 This is a sample model class that demonstrates how you can add a many to many relationship to the Post model and
 allow filtering of posts by an item in the related model. This example relates the Post model to a Category model
-in the `fbf/laravel-categories` package, which is a hierarchy, so this not only allows you to filter posts to those
+in the `mandofever78/laravel-categories` package, which is a hierarchy, so this not only allows you to filter posts to those
 assigned to a selected category, but to filter them by the selected category and/or any of it's children.
 
 To implement as is, create a file in `app/models/Post.php`, and copy this code into it
@@ -149,9 +149,9 @@ To implement as is, create a file in `app/models/Post.php`, and copy this code i
 ```php
 <?php
 
-use Fbf\LaravelCategories\Category;
+use Mandofever78\LaravelCategories\Category;
 
-class Post extends Fbf\LaravelBlog\Post {
+class Post extends Mandofever78\LaravelBlog\Post {
 
 	/**
 	 * Defines the belongsToMany relationship between Post and Category
@@ -160,7 +160,7 @@ class Post extends Fbf\LaravelBlog\Post {
 	 */
 	public function categories()
 	{
-		return $this->belongsToMany('Fbf\LaravelCategories\Category', 'category_post');
+		return $this->belongsToMany('Mandofever78\LaravelCategories\Category', 'category_post');
 	}
 
 	/**
@@ -183,8 +183,8 @@ class Post extends Fbf\LaravelBlog\Post {
 		}
 
 		return $query->join('category_post', $this->getTable().'.id', '=', 'category_post.post_id')
-			->join('fbf_categories', 'category_post.category_id', '=', 'fbf_categories.id')
-			->whereBetween('fbf_categories.lft', array($category->lft, $category->rgt))
+			->join('mandofever78_categories', 'category_post.category_id', '=', 'mandofever78_categories.id')
+			->whereBetween('mandofever78_categories.lft', array($category->lft, $category->rgt))
 			->groupBy($this->getTable().'.id');
 	}
 
@@ -230,7 +230,7 @@ class LinkPostsCategories extends Migration {
 ```
 
 If you are using FrozenNode's Administrator package, update the `app/config/administrator/posts.php` config file to use
-your new model e.g. `Post` instead of `Fbf\LaravelBlog\Post`, and add the field to the `edit_fields` section to allow
+your new model e.g. `Post` instead of `Mandofever78\LaravelBlog\Post`, and add the field to the `edit_fields` section to allow
 you to attach the Post to the related model.
 
 ```php
@@ -251,12 +251,12 @@ you to attach the Post to the related model.
 		),
 ```
 
-As mentioned above, update the IoC Container to inject an instance of your model into the `Fbf\LaravelBlog\PostsController`,
+As mentioned above, update the IoC Container to inject an instance of your model into the `Mandofever78\LaravelBlog\PostsController`,
 instead of the package's model, e.g. in `app/start/global.php`
 
 ```php
-App::bind('Fbf\LaravelBlog\PostsController', function() {
-    return new Fbf\LaravelBlog\PostsController(new Post);
+App::bind('Mandofever78\LaravelBlog\PostsController', function() {
+    return new Mandofever78\LaravelBlog\PostsController(new Post);
 });
 ```
 
