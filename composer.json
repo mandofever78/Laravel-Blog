@@ -1,5 +1,5 @@
 {
-    "name": "fbf/laravel-blog",
+    "name": "Mandofever78/laravel-blog",
     "description": "A Laravel 4 package to add a simple blog to a site",
     "keywords": ["laravel","blog"],
     "license": "MIT",
@@ -12,7 +12,7 @@
     "require": {
         "php": ">=5.3.0",
         "illuminate/support": "4.*",
-        "thujohn/rss": "dev-master",
+        "thujohn/rss-l4": "dev-master",
         "cviebrock/eloquent-sluggable": "1.0.*",
         "fzaninotto/faker": "1.4.*"
     },
@@ -24,7 +24,7 @@
             "src/seeds"
         ],
         "psr-0": {
-            "Fbf\\LaravelBlog": "src/"
+            "Mandofever78\\LaravelBlog": "src/"
         }
     },
     "minimum-stability": "dev"
