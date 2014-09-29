@@ -93,7 +93,7 @@ class PostTableFakeSeeder extends \Seeder {
 		}
 		$seedOptions = \Config::get('laravel-blog::seed.images.main_image');
 		$original = $this->faker->image(
-			public_path($imageOptions['original']['dir']),
+			$imageOptions['original']['dir'],
 			$seedOptions['original_width'],
 			$seedOptions['original_height'],
 			$seedOptions['category']
@@ -102,11 +102,11 @@ class PostTableFakeSeeder extends \Seeder {
 		foreach ($imageOptions['sizes'] as $sizeOptions)
 		{
 			$image = $this->faker->image(
-				public_path($sizeOptions['dir']),
+				$sizeOptions['dir'],
 				$sizeOptions['width'],
 				$sizeOptions['height']
 			);
-			rename($image, public_path($sizeOptions['dir']) . $filename);
+			rename($image, $sizeOptions['dir'] . $filename);
 		}
 		$this->post->main_image = $filename;
 		$this->post->main_image_alt = $this->post->title;

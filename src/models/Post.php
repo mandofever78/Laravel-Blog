@@ -228,7 +228,7 @@ class Post extends \Eloquent {
 	 */
 	protected function getImageDimensions($type, $size)
 	{
-		$pathToImage = public_path($this->getImageConfig($type, $size, 'dir') . $this->$type);
+		$pathToImage = $this->getImageConfig($type, $size, 'dir') . $this->$type;
 		if (is_file($pathToImage) && file_exists($pathToImage))
 		{
 			list($width, $height) = getimagesize($pathToImage);

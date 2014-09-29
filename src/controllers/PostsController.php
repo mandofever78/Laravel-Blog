@@ -21,18 +21,14 @@ class PostsController extends \BaseController {
 	public function index()
 	{
 		// Get the selected posts
-		$posts = $this->post->live()
-			->orderBy($this->post->getTable().'.is_sticky', 'desc')
-			->orderBy($this->post->getTable().'.published_date', 'desc')
-			->paginate(\Config::get('laravel-blog::views.index_page.results_per_page'));
-
+		$posts = Post::live()->get();
 		// Get the archives data if the config says to show the archives on the index page
 		if (\Config::get('laravel-blog::views.index_page.show_archives'))
 		{
 			$archives = $this->post->archives();
 		}
-
-		return \View::make(\Config::get('laravel-blog::views.index_page.view'), compact('posts', 'archives'));
+//		return \Response::json(array('posts'=>$posts, 'archives'=>$archives));
+        return \Response::json($posts);
 	}
 
 	/**
@@ -47,7 +43,7 @@ class PostsController extends \BaseController {
 			->byYearMonth($selectedYear, $selectedMonth)
 			->orderBy($this->post->getTable().'.is_sticky', 'desc')
 			->orderBy($this->post->getTable().'.published_date', 'desc')
-			->paginate(\Config::get('laravel-blog::views.index_page.results_per_page'));
+			->get();
 
 		// Get the archives data if the config says to show the archives on the index page
 		if (\Config::get('laravel-blog::views.index_page.show_archives'))
@@ -104,8 +100,9 @@ class PostsController extends \BaseController {
 		{
 			$archives = $this->post->archives();
 		}
-
-		return \View::make(\Config::get('laravel-blog::views.view_page.view'), compact('post', 'newer', 'older', 'archives'));
+		return \Response::json(array('current'=>$post, 'newer'=>$newer, 'older'=>$older));
+//        return \Response::json($posts);
+//		return \View::make(\Config::get('laravel-blog::views.view_page.view'), compact('post', 'newer', 'older', 'archives'));
 
 	}
 
